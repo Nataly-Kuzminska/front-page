@@ -4,14 +4,24 @@ import styled from 'styled-components'
 const Navbar = () => {
   return (
     <Nav>
-      <a href="">
-        
-      </a>
+      <Menu>
+      <MenuLink href="">WOMEN</MenuLink>
+      <MenuLink href="">MEN</MenuLink>
+      <MenuLink href="">KIDS</MenuLink>
+      </Menu>
     </Nav>
   )
 }
 
 const Nav = styled.div`
+
+`;
+
+const Menu = styled.div`
+
+`;
+
+const MenuLink = styled.a`
 
 `;
 
