@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 
 const GlobalStyle = createGlobalStyle`
   html {
-    box-sizing: border-box;
+  box-sizing: border-box;
   }
 
   *,
@@ -21,6 +21,11 @@ const GlobalStyle = createGlobalStyle`
     font-size: 18px;
   }
 
+  img {
+    max-width: 100%;
+    height: auto; 
+  }
+
   a {
     text-decoration: none;
     color: inherit;
@@ -32,7 +37,16 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  h1, h2, h3, p {
+  h2 {
+    font-family: Raleway;
+    font-size: 42px;
+    line-height: 67,2px;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+  }
+
+  p {
     padding: 0;
     margin: 0;
   }
@@ -40,10 +54,13 @@ const GlobalStyle = createGlobalStyle`
 
 const App = () => {
   return (
+
     <Container>
-      <GlobalStyle />
+      <GlobalStyle/>
       <Navbar />
+      <h2>Category name</h2>
     </Container>
+
   );
 };
 
