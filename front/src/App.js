@@ -1,7 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import {ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { createGlobalStyle } from 'styled-components';
-import styled from 'styled-components'
-import Navbar from './Navbar';
+import styled from 'styled-components';
+import { Navbar } from './Components/Navbar';
+import { DisplayData } from './Components/DisplayData';
+import { Products } from './Components/Products';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -19,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: #FFFFFF;
     font-family: Raleway, sans-serif;
     font-size: 18px;
+    color: #1D1F22;
   }
 
   img {
@@ -50,23 +55,39 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+
+  button {
+    cursor: pointer;
+  }
+
+  input, button {
+    font-family: inherit;
+  }
 `;
 
-const App = () => {
+function App(){
+  const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    uri: "http://localhost:4000/graphql",
+  });
   return (
-
-    <Container>
-      <GlobalStyle/>
-      <Navbar />
-      <h2>Category name</h2>
-    </Container>
-
+  <ApolloProvider client={client}>
+    <BrowserRouter>
+        <Switch>
+        <Route exact path='/' component={ Navbar } />
+          <div className='App'>
+          <DisplayData />
+          <GlobalStyle/>
+          <Navbar />
+          <Products/>
+          <h2>Category name</h2>
+          </div>
+        </Switch>
+    </BrowserRouter>
+  </ApolloProvider>
   );
-};
+}
 
-const Container = styled.div`
-  background: #FFFFFF;
-  height: 100vh;
-`;
+ 
 
 export default App
